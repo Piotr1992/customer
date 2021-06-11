@@ -1,0 +1,31 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: customer
+  profiles:
+    active: production
+  datasource:
+    url: ${customer.datasource.url}
+    username: ${customer.datasource.username}
+    password: ${customer.datasource.password}
+    driver-class-name: com.mysql.cj.jdbc.Driver     # org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: ${customer.datasource.ddl-mode}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+info:
+  app:
+    name: "Customer"
+    version: "0.0.1"
+    profile: ${spring.profiles.active}
+  serverInfo:
+    port: ${server.port}
+eureka:
+  client: ${eureka-client}
+application:
+  allow-get-customer: ${customer.allow-get-customer}
