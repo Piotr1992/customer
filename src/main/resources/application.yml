@@ -20,7 +20,7 @@ management:
         include: '*'
 info:
   app:
-    name: "Customer"
+    name: "Customers"
     version: "0.0.1"
     profile: ${spring.profiles.active}
   serverInfo:
