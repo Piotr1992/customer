@@ -27,5 +27,10 @@ info:
     port: ${server.port}
 eureka:
   client: ${eureka-client}
+feign:
+  hystrix:
+    enabled: true
 application:
   allow-get-customer: ${customer.allow-get-customer}
+server:
+  port: 8083
