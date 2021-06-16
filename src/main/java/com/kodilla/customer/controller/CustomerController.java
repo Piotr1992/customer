@@ -20,7 +20,7 @@ import java.util.List;
 @Slf4j
 @RefreshScope
 @RestController
-@RequestMapping(value = "/v1/customers", produces = { MediaType.APPLICATION_JSON_VALUE })
+@RequestMapping(value = "/v1/customer", produces = { MediaType.APPLICATION_JSON_VALUE })
 @RequiredArgsConstructor
 public class CustomerController {
 
@@ -39,8 +39,8 @@ public class CustomerController {
             throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE, "Getting customers is disabled");
         }
 
-        CustomerDto customer = customerMapper.mapToCustomerDto(customerService.getCustomer(customerId).orElse(null));
-
+        CustomerDto customer = customerMapper.mapToCustomerDto(customerService.getCustomer(customerId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)));
+        log.info("Customer TEST!");
         return GetCustomerResponse.of(customer);
     }
 

@@ -1,7 +1,9 @@
 package com.kodilla.customer.service;
 
 import com.kodilla.customer.dto.AccountDto;
+import com.kodilla.customer.dto.CardDto;
 import com.kodilla.customer.provider.AccountsProvider;
+import com.kodilla.customer.provider.CardsProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
