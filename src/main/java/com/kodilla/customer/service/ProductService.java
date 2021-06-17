@@ -15,8 +15,14 @@ public class ProductService {
 
     private final AccountsProvider accountProvider;
 
+    private final CardsProvider cardsProvider;
+
     public List<AccountDto> findCustomerAccounts(Long customerId) {
         return accountProvider.getCustomerAccounts(customerId);
+    }
+
+    public List<CardDto> findCustomerCards(Long customerId) {
+        return cardsProvider.getCustomerCards(customerId);
     }
 
 }

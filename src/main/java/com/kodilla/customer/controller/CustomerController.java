@@ -2,6 +2,7 @@ package com.kodilla.customer.controller;
 
 import com.kodilla.customer.dto.AccountDto;
 import com.kodilla.customer.connector.response.GetCustomerProductsResponse;
+import com.kodilla.customer.dto.CardDto;
 import com.kodilla.customer.dto.CustomerDto;
 import com.kodilla.customer.mapper.CustomerMapper;
 import com.kodilla.customer.service.CustomerService;
@@ -55,10 +56,13 @@ public class CustomerController {
 
         List<AccountDto> customerAccounts = productService.findCustomerAccounts(customerId);
 
+        List<CardDto> customerCards = productService.findCustomerCards(customerId);
+
         return GetCustomerProductsResponse.builder()
                 .customerId(customerDto.getId())
                 .fullName(customerDto.getFirstName() + " " + customerDto.getLastName())
                 .accounts(customerAccounts)
+                .cards(customerCards)
                 .build();
     }
 

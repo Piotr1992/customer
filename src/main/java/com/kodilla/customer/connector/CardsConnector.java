@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.Collections;
 
 @RibbonClient(name = "cards")
-@FeignClient(name = "cards", fallback = AccountsConnectorFallback.class)
+@FeignClient(name = "cards", fallback = CardsConnectorFallback.class)
 public interface CardsConnector {
 
     @GetMapping("/v1/cards")

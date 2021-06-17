@@ -26,17 +26,7 @@ public class AccountsProvider {
                             account.getAvailableFunds()
                         )
                     )
-//                .map(account -> new AccountDto())
                 .collect(Collectors.toList());
-
-/*
-*
-*     private Long id;
-    private String nrb;
-    private String currency;
-    private double availableFunds;
-*
-* */
 
     }
 

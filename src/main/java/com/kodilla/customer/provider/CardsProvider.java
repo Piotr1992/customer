@@ -12,31 +12,19 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class CardsProvider {
-    private final CardsConnector accountsConnector;
+    private final CardsConnector cardsConnector;
 
     @HystrixCommand(fallbackMethod = "fallbackGetCards")
-    public List<CardDto> getCustomerAccounts(Long customerId) {
-        return accountsConnector.getCards(customerId)
+    public List<CardDto> getCustomerCards(Long customerId) {
+        return cardsConnector.getCards(customerId)
                 .getCards()
                 .stream()
-                .map(account -> new CardDto(
-                                account.getId(),
-                                account.getNrb(),
-                                account.getCurrency(),
-                                account.getAvailableFunds()
-                        )
+                .map(card -> new CardDto(
+                        card.getId(),
+                        card.getTypeCard()
+                    )
                 )
-//                .map(account -> new AccountDto())
                 .collect(Collectors.toList());
-
-/*
-*
-*     private Long id;
-    private String nrb;
-    private String currency;
-    private double availableFunds;
-*
-* */
 
     }
 

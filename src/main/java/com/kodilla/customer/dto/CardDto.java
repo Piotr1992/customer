@@ -13,8 +13,6 @@ import java.math.BigDecimal;
 public class CardDto {
 
     private Long id;
-    private String nrb;
-    private String currency;
-    private double availableFunds;
+    private String typeCard;
 
 }
