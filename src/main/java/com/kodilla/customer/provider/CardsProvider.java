@@ -2,7 +2,7 @@ package com.kodilla.customer.provider;
 
 import com.kodilla.customer.connector.CardsConnector;
 import com.kodilla.customer.dto.CardDto;
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+//import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 public class CardsProvider {
     private final CardsConnector cardsConnector;
 
-    @HystrixCommand(fallbackMethod = "fallbackGetCards")
+//    @HystrixCommand(fallbackMethod = "fallbackGetCards")
     public List<CardDto> getCustomerCards(Long customerId) {
         return cardsConnector.getCards(customerId)
                 .getCards()

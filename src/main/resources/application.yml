@@ -16,6 +16,8 @@ spring:
 management:
   endpoints:
     web:
+      cors:
+        allowed-origins: '*'
       exposure:
         include: '*'
 info:
@@ -33,4 +35,10 @@ feign:
 application:
   allow-get-customer: ${customer.allow-get-customer}
 server:
-  port: 8083
+  port: 9998
+#  port: 8083
+#accounts:
+#  ribbon:
+#    eureka:
+#      enabled: false
+#    listOfServers: localhost:9999,localhost:9998
