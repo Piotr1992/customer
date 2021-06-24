@@ -4,7 +4,10 @@ import com.kodilla.customer.dto.AccountDto;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.cloud.contract.stubrunner.spring.AutoConfigureStubRunner;
+import org.springframework.cloud.contract.stubrunner.spring.StubRunnerProperties;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
@@ -13,7 +16,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
+@AutoConfigureMockMvc
+@AutoConfigureStubRunner(
+    ids = {
+        "com.kodilla:accounts:ContractTest:0.0.1-SNAPSHOT:stubs:9999"
+    },
+    stubsMode = StubRunnerProperties.StubsMode.LOCAL
+)
 class ProductServiceTest {
+
     @Autowired
     private ProductService productService;
 
