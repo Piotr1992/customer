@@ -52,6 +52,7 @@ dependencies {
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
+    testImplementation 'org.springframework.cloud:spring-cloud-starter-contract-stub-runner'
     testImplementation 'com.h2database:h2:1.4.200'
 
     testImplementation group: 'io.rest-assured', name: 'spring-mock-mvc', version: '3.0.0'
