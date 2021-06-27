@@ -21,3 +21,6 @@ spring:
 eureka:
   client:
     enabled: false
+
+application:
+  allow-get-customer: true
