@@ -17,12 +17,6 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-@AutoConfigureStubRunner(
-    ids = {
-        "com.kodilla:accounts:ContractTest:0.0.1-SNAPSHOT:stubs:9999"
-    },
-    stubsMode = StubRunnerProperties.StubsMode.LOCAL
-)
 class ProductServiceTest {
 
     @Autowired
