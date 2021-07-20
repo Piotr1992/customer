@@ -1,23 +1,32 @@
 spring:
   application:
     name: customer
-
   profiles:
     active: test
+#    active: production
   datasource:
     url: jdbc:h2:mem:testdb
-    username: sa
-    password: sa
+    username: sa # ${customer.datasource.username}
+    password: sa # ${customer.datasource.password}
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:h2:mem:testdb
+#    username: sa
+#    password: sa
     driver-class-name: org.h2.Driver
   jpa:
     hibernate:
-      ddl-auto: create-drop
-    database: h2
-    database-platform: org.hibernate.dialect.H2Dialect
-
+      ddl-auto: create-drop # ${customer.datasource.ddl-mode}
+      database: h2 # ${customer.datasource.database}
+      database-platform: org.hibernate.dialect.H2Dialect
+#      ddl-auto: create-drop
+#    database: h2
+#    database-platform: org.hibernate.dialect.H2Dialect
 eureka:
   client:
     enabled: false
-
+feign:
+  hystrix:
+    enabled: true
 application:
   allow-get-customer: true

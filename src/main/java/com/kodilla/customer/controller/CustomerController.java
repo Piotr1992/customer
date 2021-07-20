@@ -1,5 +1,6 @@
 package com.kodilla.customer.controller;
 
+import com.kodilla.customer.dto.Account;
 import com.kodilla.customer.dto.AccountDto;
 import com.kodilla.customer.connector.response.GetCustomerProductsResponse;
 import com.kodilla.customer.dto.CardDto;

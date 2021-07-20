@@ -1,5 +1,14 @@
+#spring:
+#  cloud:
+#    config:
+#      uri: http://localhost:8888
+#      profile: ${spring.profiles.active}
+
+
+
 spring:
   cloud:
     config:
-      uri: http://localhost:8888
-      profile: ${spring.profiles.active}
+      enabled: false
+  sleuth:
+    enabled: false

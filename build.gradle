@@ -1,7 +1,12 @@
+import org.springframework.cloud.contract.verifier.config.TestFramework
+
 buildscript {
     repositories {
         mavenCentral()
         mavenLocal()
+    }
+    dependencies {
+        classpath 'org.springframework.cloud:spring-cloud-contract-gradle-plugin:2.2.3.RELEASE'
     }
 }
 
@@ -11,9 +16,18 @@ plugins {
     id 'java'
 }
 
+apply plugin: 'spring-cloud-contract'
+//apply plugin: 'maven-publish'
+
 group = 'com.kodilla'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
 
 repositories {
     mavenCentral()
@@ -25,14 +39,14 @@ ext {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.cloud:spring-cloud-starter'
     implementation 'org.springframework.cloud:spring-cloud-starter-config'
-//    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
-//    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-ribbon'
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-ribbon'
     implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-hystrix'
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-hystrix-dashboard'
@@ -42,9 +56,9 @@ dependencies {
     implementation 'io.rest-assured:spring-mock-mvc:3.0.0'
     implementation 'org.springframework.boot:spring-boot-test:2.3.0.RELEASE'
 
-    runtimeOnly 'mysql:mysql-connector-java'
-    compileOnly 'org.projectlombok:lombok:1.18.12'
-    annotationProcessor 'org.projectlombok:lombok:1.18.12'
+    compileOnly 'org.projectlombok:lombok'
+    compileOnly 'mysql:mysql-connector-java'
+    annotationProcessor 'org.projectlombok:lombok'
 
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
@@ -53,6 +67,7 @@ dependencies {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
     testImplementation 'org.springframework.cloud:spring-cloud-starter-contract-stub-runner'
+    testImplementation 'org.springframework.cloud:spring-cloud-starter-contract-verifier'
     testImplementation 'com.h2database:h2:1.4.200'
 
     testImplementation group: 'io.rest-assured', name: 'spring-mock-mvc', version: '3.0.0'
@@ -66,12 +81,19 @@ dependencyManagement {
     }
 }
 
-configurations {
-    compileOnly {
-        extendsFrom annotationProcessor
-    }
+contracts {
+    testFramework = TestFramework.JUNIT5
+    packageWithBaseClasses = 'com.kodilla.customer'
 }
 
 test {
     useJUnitPlatform()
+}
+
+
+task stubsJar(type: Jar) {
+    into("/") {
+        include('**/*.groovy')
+        from("${project.rootDir}/src/main/resources/contracts")
+    }
 }

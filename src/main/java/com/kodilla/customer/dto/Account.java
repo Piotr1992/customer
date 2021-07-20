@@ -19,7 +19,7 @@ public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private long iddto;
+    private Long iddto;
 
     @Column(name = "nrb")
     private String nrb;
@@ -29,5 +29,8 @@ public class Account {
 
     @Column(name = "available_funds")
     private double availableFunds;
+
+    @Column(name = "customer_id")
+    private Long idCustomer;
 
 }
