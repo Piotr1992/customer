@@ -1,6 +1,5 @@
 package com.kodilla.customer.connector.response;
 
-import com.kodilla.customer.dto.Account;
 import com.kodilla.customer.dto.AccountDto;
 import com.kodilla.customer.dto.CardDto;
 import lombok.AllArgsConstructor;

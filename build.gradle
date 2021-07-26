@@ -57,8 +57,10 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-test:2.3.0.RELEASE'
 
     compileOnly 'org.projectlombok:lombok'
-    compileOnly 'mysql:mysql-connector-java'
+//    compileOnly 'mysql:mysql-connector-java'
     annotationProcessor 'org.projectlombok:lombok'
+
+    runtimeOnly 'mysql:mysql-connector-java'
 
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
@@ -84,6 +86,7 @@ dependencyManagement {
 contracts {
     testFramework = TestFramework.JUNIT5
     packageWithBaseClasses = 'com.kodilla.customer'
+    failOnNoContracts = false
 }
 
 test {

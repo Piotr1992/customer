@@ -4,17 +4,17 @@ spring:
   application:
     name: customer
   profiles:
-    active: test
+    active: production  # test
   datasource:
-    url: jdbc:h2:mem:testdb
-    username: sa
-    password: sa
-    driver-class-name: org.h2.Driver
+    url: ${customer.datasource.url}
+    username: ${customer.datasource.username}
+    password: ${customer.datasource.password}
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
       ddl-auto: create-drop # ${customer.datasource.ddl-mode}
       database: h2
-      database-platform: org.hibernate.dialect.H2Dialect
+      database-platform: org.hibernate.dialect.MySQL5Dialect
 management:
   endpoints:
     web:
@@ -40,7 +40,7 @@ server:
   port: 9998
 #  port: 8083
 accounts:
-#  ribbon:
+  ribbon:
     eureka:
       enabled: false
-#    listOfServers: localhost:9999,localhost:9998
+    listOfServers: localhost:9999,localhost:9998
